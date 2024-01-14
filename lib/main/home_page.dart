@@ -8,17 +8,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+  int currentPageIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: navButton(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -27,17 +21,39 @@ class _HomePageState extends State<HomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              '_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+    );
+  }
+
+  NavigationBar navButton() {
+    return NavigationBar(
+      labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+      selectedIndex: currentPageIndex,
+      onDestinationSelected: (int index) {
+        setState(() {
+          currentPageIndex = index;
+        });
+      },
+      destinations: const <Widget>[
+        NavigationDestination(
+          icon: Icon(Icons.home),
+          label: 'HOME',
+        ),
+        NavigationDestination(
+          icon: Icon(Icons.history),
+          label: 'HISTORY',
+        ),
+        NavigationDestination(
+          selectedIcon: Icon(Icons.settings),
+          icon: Icon(Icons.settings),
+          label: 'SETTING',
+        ),
+      ],
     );
   }
 }
