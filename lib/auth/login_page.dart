@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:absensi/main/home_page.dart';
+import 'package:absensi/main/main_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => HomePage(),
+                            builder: (context) => MainPage(),
                           ),
                         );
                       } else {
